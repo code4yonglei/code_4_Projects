@@ -1,5 +1,6 @@
 # code_4_ENUF_project
-Computing electrostatic interactions in molecular simulations
+
+## Computing electrostatic interactions in molecular simulations
 
 ENUF, an abbreviation for the Ewald summation method based on Non-Uniform fast Fourier transform (NFFT) technique, is a method proposed to calculate electrostatic interactions between charged particles in molecular simulation systems.
 

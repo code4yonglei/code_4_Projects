@@ -20,7 +20,3 @@ Chem. 37, 378-387 (2016).
 [4] S.-C. Yang*, Z.-Y. Lu, H.-J. Qian, Y.-L. Wang, J.-P. Han. [A hybrid Parallel architecture for electrostatic interactions in simulation of dissipative particle dynamics](https://www.sciencedirect.com/science/article/abs/pii/S0010465517302126). Comput. Phys. Commun. 220, 376-389 (2017).
 
 [5] Y.-L. Wang∗, Y.-L. Zhu, Z.-Y. Lu, A. Laaksonen*. [Electrostatic interactions in soft particle systems: Mesoscale simulations of ionic liquids](https://pubs.rsc.org/en/content/articlehtml/2018/sm/c8sm00387d), Soft Matter 14, 4252-4267 (2018) (Highlighted on the inside back cover of Soft Matter).
-
-[6] S.-C. Yang, B. Li, Y.-L. Zhu, A. Laaksonen, Y.-L. Wang*, [The ENUF method –- Ewald summation based on non-uniform fast Fourier transform: Implementation, parallelization, and application](https://onlinelibrary.wiley.com/doi/10.1002/jcc.26395), J. Comput. Chem. 41, 2316-2335 (2020).
-
-[7] S.-C. Yang, Y.-L. Wang*. [A hybrid MPI-CUDA approach for nonequispaced discrete Fourier transformation](https://www.sciencedirect.com/science/article/abs/pii/S0010465520302393), Comput. Phys. Commun. 258, 107513 (2021).

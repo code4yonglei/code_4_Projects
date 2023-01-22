@@ -8,7 +8,6 @@ The **ENUF** method was first implemented in the classic molecular dynamics simu
 
 The ENUF and ENUF-DPD methods were adopted to explore the dependence of conformational properties of polyelectrolytes on charge fraction, ion concentration and counterion valency of added salts, to investigate specific binding structures of dendrimers on bilayer membranes and the corresponding permeation mechanisms, and to study heterogeneous structures and dynamics in ionic liquids and how electrostatic interactions between charged particles affect these properties at extended spatiotemporal scales.
 
-
 ## Relevant Publications
 [1] Y.-L. Wang, A. Laaksonen*, Z.-Y. Lu*. [Implementation of non-uniform FFT based Ewald summation in dissipative particle dynamics method](https://www.sciencedirect.com/science/article/pii/S0021999112005542). J. Comput. Phys. 235, 666-682 (2013).
 

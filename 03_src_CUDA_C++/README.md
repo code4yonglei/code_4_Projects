@@ -1,1 +1,1 @@
-## Partial source code for the CUDA and C++ version for the packageDue to the copyright issue, only partial codes are available here.Send me an email if you want to discuss more details about the package.
+## Partial source code for the CUDA and C++ version for the packageDue to the copyright issue, only partial codes are available here.Send me an email if you want to discuss more details about the package.

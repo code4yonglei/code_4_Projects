@@ -2,11 +2,24 @@
 
 ## Computing electrostatic interactions in molecular simulations
 
-**ENUF**, an abbreviation for the **E**wald summation method based on **N**on-**U**niform fast **F**ourier transform (NFFT) technique, is a method proposed to calculate electrostatic interactions between charged particles in molecular simulation systems.
+**ENUF**, an abbreviation for the **E**wald summation method based on **N**on-**U**niform fast
+**F**ourier transform (NFFT) technique, is a method proposed to calculate electrostatic interactions
+between charged particles in molecular simulation systems.
 
-The **ENUF** method was first implemented in the classic molecular dynamics simulation code, and thereafter in the dissipative particle dynamics (**DPD**) framework to calculate electrostatic interactions between charge density distributions at mesoscopic level. Selecting a set of optimal physical parameters, the ENUF method gives a good precision as desired and bears a computational complexity of *O*(*N*log*N*), which is comparable to that of PME (particle-mesh Ewald summation method) and PPPM (particle-particle particle-mesh Ewald summation method) methods.
+The **ENUF** method was first implemented in the classic molecular dynamics simulation code, 
+and thereafter in the dissipative particle dynamics (**DPD**) framework to calculate 
+electrostatic interactions between charge density distributions at mesoscopic level. 
+Selecting a set of optimal physical parameters, the ENUF method gives a good precision as desired 
+and bears a computational complexity of *O*(*N*log*N*), which is comparable to that of 
+PME (particle-mesh Ewald summation method) and PPPM (particle-particle particle-mesh 
+Ewald summation method) methods.
 
-The ENUF and ENUF-DPD methods were adopted to explore the dependence of conformational properties of polyelectrolytes on charge fraction, ion concentration and counterion valency of added salts, to investigate specific binding structures of dendrimers on bilayer membranes and the corresponding permeation mechanisms, and to study heterogeneous structures and dynamics in ionic liquids and how electrostatic interactions between charged particles affect these properties at extended spatiotemporal scales.
+The ENUF and ENUF-DPD methods were adopted to explore the dependence of conformational properties 
+of polyelectrolytes on charge fraction, ion concentration and counterion valency of added salts, 
+to investigate specific binding structures of dendrimers on bilayer membranes and the corresponding 
+permeation mechanisms, and to study heterogeneous structures and dynamics in ionic liquids 
+and how electrostatic interactions between charged particles affect these properties at extended 
+spatiotemporal scales.
 
 ## 01_DPD_solvent_with_salt_FortranC
 This folder contains the code (serial version) to simulate properties of ions in aqueous dilute solution.
@@ -15,6 +28,10 @@ The [**FFTW**](https://www.fftw.org/) library should be installed before compila
 
 ## 02_DPD_solvent_with_salt_MPI_FortranC
 This folder contains the paralled version of the code to simulate properties of ions in aqueous dilute solution. The code is written using Fortran and C and paralleled using **MPI**.
+
+## 03_GALAMOST_CUDA_C++
+This folder contains several files that have been implemented in the **GALAMOST** package.
+The descriptions of these methods are available in ref. [5].
 
 ## Relevant Publications
 [1] Y.-L. Wang, A. Laaksonen*, Z.-Y. Lu*. [Implementation of non-uniform FFT based Ewald summation in dissipative particle dynamics method](https://www.sciencedirect.com/science/article/pii/S0021999112005542). J. Comput. Phys. 235, 666-682 (2013).

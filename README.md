@@ -23,7 +23,7 @@ spatiotemporal scales.
 
 ## 01_DPD_solvent_with_salt_FortranC
 This folder contains the code (serial version) to simulate properties of ions in aqueous dilute solution.
-The code is written using Fortran and C.
+The code is written using **Fortran** and **C**.
 The [**FFTW**](https://www.fftw.org/) library should be installed before compilation of the source code.
 
 ## 02_DPD_solvent_with_salt_MPI_FortranC
@@ -31,7 +31,7 @@ This folder contains the paralled version of the code to simulate properties of 
 
 ## 03_GALAMOST_CUDA_C++
 This folder contains several files that have been implemented in the **GALAMOST** package.
-The descriptions of these methods are available in ref. [5].
+The descriptions of these methods are available in Ref. [5].
 
 ## Relevant Publications
 [1] Y.-L. Wang, A. Laaksonen*, Z.-Y. Lu*. [Implementation of non-uniform FFT based Ewald summation in dissipative particle dynamics method](https://www.sciencedirect.com/science/article/pii/S0021999112005542). J. Comput. Phys. 235, 666-682 (2013).

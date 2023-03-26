@@ -10,10 +10,10 @@ static __device__ inline double atomicAdd(double* address, double val)
     unsigned long long int* address_as_ull = (unsigned long long int*)address;
     unsigned long long int old = *address_as_ull, assumed;
 
-    do {
+    do
+	{
         assumed = old;
-        old = atomicCAS(address_as_ull,
-            assumed,
+        old = atomicCAS(address_as_ull, assumed,
             __double_as_longlong(val + __longlong_as_double(assumed)));
     } while (assumed != old);
 
@@ -39,7 +39,8 @@ __global__ static void spread(const Real4 *d_pos,
     const int bid = blockIdx.x;
 
     int i = bid * blockDim.x + tid;
-    if(i < gpu_icon_num){
+    if(i < gpu_icon_num)
+	{
         unsigned int idx = d_group_members[i];
         Real4 posi = d_pos[idx];
 
@@ -48,7 +49,8 @@ __global__ static void spread(const Real4 *d_pos,
 		c.x = posi.x * minv.x;
 		u.x = c.x;
 		Real dx = c.x-Real(u.x);
-		if(c.x < Real(0.0)){
+		if(c.x < Real(0.0))
+		{
 			dx += Real(1.0);
 			u.x -= 1;
 		}
@@ -57,7 +59,8 @@ __global__ static void spread(const Real4 *d_pos,
 		c.y = posi.y * minv.y;
 		u.y = c.y;
 		Real dy = c.y-Real(u.y);
-		if(c.y < Real(0.0)){
+		if(c.y < Real(0.0))
+		{
 			dy += Real(1.0);
 			u.y -= 1;
 		}
@@ -66,7 +69,8 @@ __global__ static void spread(const Real4 *d_pos,
 		c.z = posi.z * minv.z;
 		u.z = c.z;
 		Real dz = c.z-Real(u.z);
-		if(c.z < Real(0.0)){
+		if(c.z < Real(0.0))
+		{
 			dz += Real(1.0);	
 			u.z -= 1;
 		}
@@ -82,21 +86,24 @@ __global__ static void spread(const Real4 *d_pos,
         Real plz = exp_gala(dz*Real(2.0)*binv);
 
 		Real fax = bax;
-        for(int t0=0; t0<expansion; t0++){
+        for(int t0=0; t0<expansion; t0++)
+		{
 			int l0 = u.x + t0;
 			if(l0 >= n.x) l0 -= n.x;
 			if(l0 < 0)  l0 += n.x;
 			Real psi0 = fax*d_coeff[t0];
 			int l_plain0 = l0*n.y;
 			Real fay = bay;
-			for(int t1=0; t1<expansion; t1++){
+			for(int t1=0; t1<expansion; t1++)
+			{
 				int l1 = u.y + t1;
 				if(l1 >= n.y) l1 -= n.y;
 				if(l1 < 0)  l1 += n.y;
 				Real psi1 = fay*d_coeff[t1];
 				int l_plain1 = l_plain0+l1;
 				Real faz = baz;
-				for(int t2=0; t2<expansion; t2++){
+				for(int t2=0; t2<expansion; t2++)
+				{
 					int l2 = u.z + t2;
 					if(l2 >= n.z) l2 -= n.z;
 					if(l2 < 0)  l2 += n.z;
@@ -136,31 +143,40 @@ __global__ static void scale_subdivide(const BoxSize box,
     shared[tid] = 0;
 	Real3 L = box.getL();
 	Real3 LINV = box.getLINV();
-    if(i < N.x*N.y*N.z){
+    if(i < N.x*N.y*N.z)
+	{
         int t0 = i / (N.y*N.z);
         int t1 = i / N.z - t0 * N.y;
         int t2 = i % N.z;
 		int3 k, ks;
-        if(t0 < N.x/2){
+        if(t0 < N.x/2)
+		{
             k.x = t0;
             ks.x = N.x/2 + t0;
-		}else{
+		}else
+		{
     	    k.x = n.x - N.x + t0;
     	    ks.x = t0 - N.x/2;
 		}
 
-        if(t1 < N.y/2){
+        if(t1 < N.y/2)
+		{
             k.y = t1;
             ks.y = N.y/2 + t1;
-		}else{
+		}
+		else
+		{
     	    k.y = n.y - N.y + t1;
     	    ks.y = t1 - N.y/2;
 		}
 
-        if(t2 < N.z/2){
+        if(t2 < N.z/2)
+		{
             k.z = t2;
             ks.z = N.z/2 + t2;
-		}else{
+		}
+		else
+		{
     	    k.z = n.z - N.z + t2;
     	    ks.z = t2 - N.z/2;
 		}
@@ -173,7 +189,8 @@ __global__ static void scale_subdivide(const BoxSize box,
         int k2_sq = k2*k2;
         int ks_square = k0_sq + k1_sq + k2_sq;
         
-        if((ks_square!=0)&&(ks_square<=kc*kc)){
+        if((ks_square!=0)&&(ks_square<=kc*kc))
+		{
             Real c_phi_inv_k = c_phi_inv0[ks.x]* c_phi_inv1[ks.y]* c_phi_inv2[ks.z];
 //            int ks_plain = (ks.x*N.y + ks.y)*N.z + ks.z;
             int k_plain = (k.x*n.y + k.y)*n.z + k.z;
@@ -198,15 +215,16 @@ __global__ static void scale_subdivide(const BoxSize box,
             g_hatz[k_plain].x = f_real * k2 * LINV.z * c_phi_inv_k;
             g_hatz[k_plain].y = f_image * k2 * LINV.z * c_phi_inv_k;
 		}
-	}  
+	}
 
     int offset = blockDim.x / 2;
 
     __syncthreads();
-    while(offset > 0) {
-        if(tid < offset) {
+    while(offset > 0)
+	{
+        if(tid < offset)
             shared[tid] += shared[tid + offset];
-        }
+
         offset >>= 1;
         __syncthreads();
     } 
@@ -238,7 +256,8 @@ __global__ static void interpolate(const Real4 *d_pos,
     const int bid = blockIdx.x;
 
     int i = bid * blockDim.x + tid;  
-    if(i < icon_num){ 
+    if(i < icon_num)
+	{ 
 		Real fx_image=0, fy_image=0, fz_image=0;
         unsigned int idx = d_group_members[i];
         Real prefix = Real(2.0)*d_charge[idx]*volume;
@@ -249,7 +268,8 @@ __global__ static void interpolate(const Real4 *d_pos,
 		c.x = posi.x * minv.x; 
 		u.x = c.x;
 		Real dx = c.x-Real(u.x);
-		if(c.x < Real(0.0)){
+		if(c.x < Real(0.0))
+		{
 			dx += Real(1.0);
 			u.x -= 1;
 		}
@@ -258,7 +278,8 @@ __global__ static void interpolate(const Real4 *d_pos,
 		c.y = posi.y * minv.y; 
 		u.y = c.y;
 		Real dy = c.y-Real(u.y);
-		if(c.y < Real(0.0)){
+		if(c.y < Real(0.0))
+		{
 			dy += Real(1.0);
 			u.y -= 1;
 		}
@@ -267,7 +288,8 @@ __global__ static void interpolate(const Real4 *d_pos,
 		c.z = posi.z * minv.z;
 		u.z = c.z;
 		Real dz = c.z-Real(u.z);
-		if(c.z < Real(0.0)){
+		if(c.z < Real(0.0))
+		{
 			dz += Real(1.0);	
 			u.z -= 1;
 		}
@@ -283,21 +305,24 @@ __global__ static void interpolate(const Real4 *d_pos,
 
 		Real4 force = d_force[idx];
 		Real fax = bax;
-        for(int t0=0; t0<expansion; t0++){
+        for(int t0=0; t0<expansion; t0++)
+		{
 			int l0 = u.x + t0;
 			if(l0 >= n.x) l0 -= n.x;
 			if(l0 < 0)  l0 += n.x;
 			Real psi0 = fax*d_coeff[t0];
 			int l_plain0 = l0*n.y;
 			Real fay = bay;
-			for(int t1=0; t1<expansion; t1++){
+			for(int t1=0; t1<expansion; t1++)
+			{
 				int l1 = u.y + t1;
 				if(l1 >= n.y) l1 -= n.y;
 				if(l1 < 0)  l1 += n.y;
 				Real psi1 = fay*d_coeff[t1];	
 				int l_plain1 = l_plain0 + l1;
 				Real faz = baz;
-				for(int t2=0; t2<expansion; t2++){
+				for(int t2=0; t2<expansion; t2++)
+				{
 					int l2 = u.z + t2;				
 					if(l2 >= n.z) l2 -= n.z;
 					if(l2 < 0)  l2 += n.z;
@@ -376,8 +401,6 @@ cudaError_t cuenuf(Real4* d_force,
 		recip->kc); 
 	cudaThreadSynchronize();
 
-
-
     CUFFTEXEC(plan, gpuMalloc->gpu_g_hatx, gpuMalloc->gpu_g_hatx, CUFFT_INVERSE);
     CUFFTEXEC(plan, gpuMalloc->gpu_g_haty, gpuMalloc->gpu_g_haty, CUFFT_INVERSE);
     CUFFTEXEC(plan, gpuMalloc->gpu_g_hatz, gpuMalloc->gpu_g_hatz, CUFFT_INVERSE);
@@ -419,7 +442,8 @@ __global__ void gpu_fix_exclusions2_kernel(Real4 *d_force,
 {
     // start by identifying which particle we are to handle
     int group_idx = blockIdx.x * blockDim.x + threadIdx.x;
-    if (group_idx < group_size){
+    if (group_idx < group_size)
+	{
         unsigned int idx = d_group_members[group_idx];
         const Real sqrtpi = sqrt_gala(M_PI);
         unsigned int n_neigh = d_n_neigh[idx];
@@ -437,7 +461,8 @@ __global__ void gpu_fix_exclusions2_kernel(Real4 *d_force,
 
         // prefetch neighbor index
         unsigned int next_j = d_nlist[nli(idx, 0)];
-		for (int neigh_idx = 0; neigh_idx < n_neigh; neigh_idx++){
+		for (int neigh_idx = 0; neigh_idx < n_neigh; neigh_idx++)
+		{
 			// read the current neighbor index (MEM TRANSFER: 4 bytes)
 			// prefetch the next value and set the current one
 			cur_j = next_j;
@@ -463,7 +488,8 @@ __global__ void gpu_fix_exclusions2_kernel(Real4 *d_force,
 
 			if(force_log.virial)
 				virial -= Real(1.0)/Real(6.0) * rsq * force_divr; 
-			if(force_log.virial_matrix){
+			if(force_log.virial_matrix)
+			{
 				Real force_div2r = Real(0.5) * force_divr;
 				virial_matrix.x -=  dx * dx * force_div2r;   // press_tensor_xx
 				virial_matrix.y -=  dx * dy * force_div2r;   // press_tensor_xy

@@ -5,8 +5,8 @@
 #ifndef __ENUFFORCE_CUH__
 #define __ENUFFORCE_CUH__
 
-typedef struct{
-        
+typedef struct
+{   
     unsigned int number;    
     Real alpha;
     Real Uk; 
@@ -35,7 +35,8 @@ typedef struct{
 
 
 // parameters used for the calculatio of EE in reciprocal space
-typedef struct{
+typedef struct
+{
     CUFFTCOMPLEX* gpu_g;
     Real *gpu_uk; 
 
@@ -46,7 +47,6 @@ typedef struct{
     CUFFTCOMPLEX *gpu_g_hatx;
     CUFFTCOMPLEX *gpu_g_haty; 
     CUFFTCOMPLEX *gpu_g_hatz; 
-
 } gpu_malloc;
 
 

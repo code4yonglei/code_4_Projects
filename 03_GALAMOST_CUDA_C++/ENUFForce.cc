@@ -34,8 +34,8 @@ ENUFForce::~ENUFForce()
 }
 
 
-void ENUFForce::setParams(Real alpha, Real sigma,
-                        int precision, int Nx, int Ny, int Nz)
+void ENUFForce::setParams(Real alpha, Real sigma, int precision, 
+						int Nx, int Ny, int Nz)
 {
     m_params_set = true;
     m_Nx = Nx;
@@ -49,7 +49,8 @@ void ENUFForce::setParams(Real alpha, Real sigma,
     m_q = 0.f; // get system charge
     m_q2 = 0.0;
     unsigned int Np = m_basic_info->getN();
-    for(int i = 0; i < (int)Np; i++) {
+    for(int i = 0; i < (int)Np; i++)
+	{
         m_q += h_charge[i];
         m_q2 += h_charge[i]*h_charge[i];
     }
@@ -59,7 +60,8 @@ void ENUFForce::setParams(Real alpha, Real sigma,
 }
 
 
-Real phi_hut(int n, int k, Real b){
+Real phi_hut(int n, int k, Real b)
+{
     Real phi_hut = exp(-(pow(M_PI*(k)/n,2.0) * b));
     return phi_hut;
 }
@@ -71,7 +73,6 @@ void ENUFForce::cuenuf_init(unsigned int group_size,
                 recip_plan* recip, gpu_malloc* gpuMalloc,
                 unsigned int block_size)
 {
-
     recip->number = group_size;
     recip->alpha = alpha;
 

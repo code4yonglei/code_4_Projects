@@ -5,7 +5,8 @@
 #ifndef __ENUFFORCE_H__
 #define __ENUFFORCE_H__
 
-class ENUFForce : public Force {
+class ENUFForce : public Force
+{
     public:
         ENUFForce(boost::shared_ptr<AllInfo> all_info,
                 boost::shared_ptr<NeighborList> nlist,
@@ -15,7 +16,8 @@ class ENUFForce : public Force {
         void setParams(Real alpha, Real sigma, int precision, 
                 int Nx, int Ny, int Nz);
 
-        void slotBoxChanged(){
+        void slotBoxChanged()
+		{
             m_box_changed = true;
         }
 

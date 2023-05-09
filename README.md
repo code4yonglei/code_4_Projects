@@ -33,6 +33,10 @@ This folder contains the paralled version of the code to simulate properties of 
 This folder contains several files that have been implemented in the **GALAMOST** package.
 The descriptions of these methods are available in Ref. [5].
 
+## 04_hybrid_CUDA_MPI_2021CPCpaper
+This folder contains files for the publication [7](https://www.sciencedirect.com/science/article/abs/pii/S0010465520302393).
+
+
 ## Relevant Publications
 [1] Y.-L. Wang, A. Laaksonen*, Z.-Y. Lu*. [Implementation of non-uniform FFT based Ewald summation in dissipative particle dynamics method](https://www.sciencedirect.com/science/article/pii/S0021999112005542). J. Comput. Phys. 235, 666-682 (2013).
 

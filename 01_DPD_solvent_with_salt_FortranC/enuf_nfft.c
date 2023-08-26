@@ -70,7 +70,8 @@ void FElecRecipENUF_(int *ikspace, int *Npmaxx, int *Nchargee, double *alphaa,
 	N[2]=kklimit;
 
 	// init pseudo random nodes
-	for(j=0; j<Ncharge; j++){
+	for(j=0; j<Ncharge; j++)
+	{
 		jjj = idcharge[j] - 1 ;
 		my_plan.x[3*j+0] = rX[jjj]*dLxINV;
 		my_plan.x[3*j+1] = rY[jjj]*dLyINV;
@@ -79,7 +80,8 @@ void FElecRecipENUF_(int *ikspace, int *Npmaxx, int *Nchargee, double *alphaa,
 		my_plan.f[j][1]  = 0.0;
 	}
 
-	for(j=Ncharge ; j<my_plan.M; j++){
+	for(j=Ncharge ; j<my_plan.M; j++)
+	{
 		my_plan.x[3*j+0]=0.0;
 		my_plan.x[3*j+1]=0.0;
 		my_plan.x[3*j+2]=0.0;
@@ -95,16 +97,16 @@ void FElecRecipENUF_(int *ikspace, int *Npmaxx, int *Nchargee, double *alphaa,
 	double w, gu, gf, uSumF, virSumF;
 	int zlim, ylim, xlim;
 
-	w = (M_PI*dLxINV/alpha_chg)*(M_PI*dLxINV/alpha_chg);
-	gu = 0.5*dLxINV/M_PI;
-	gf = 2.0*dLxINV*dLxINV;
+	w = (M_PI * dLxINV / alpha_chg) * (M_PI * dLxINV / alpha_chg);
+	gu = 0.5 * dLxINV / M_PI;
+	gf = 2.0 * dLxINV * dLxINV;
 
 	uSumF = 0.0;
 	virSumF = 0.0;
 
-	zlim = N[2]/2;
-	ylim = N[1]/2;
-	xlim = N[0]/2;
+	zlim = N[2] / 2;
+	ylim = N[1] / 2;
+	xlim = N[0] / 2;
 
 	int nx,ny,nz,nvv;
 	int const zhigh = 1;
@@ -191,7 +193,8 @@ void FElecRecipENUF_(int *ikspace, int *Npmaxx, int *Nchargee, double *alphaa,
 
 	double gnf = 0.0;
 
-	for (j=0; j<Ncharge; j++){
+	for (j=0; j<Ncharge; j++)
+	{
 		jjj = idcharge[j] - 1;
 		gnf = charge[jjj]*gf;
 		fkx[jjj] = gnf*f_x[j][1];
@@ -202,7 +205,8 @@ void FElecRecipENUF_(int *ikspace, int *Npmaxx, int *Nchargee, double *alphaa,
 }
 
 
-void FElecRecipENUF_FINALIZE_(){
+void FElecRecipENUF_FINALIZE_()
+{
 	nfft_finalize(&my_plan);
 	free(f_hat_x);
 	free(f_hat_y);

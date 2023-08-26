@@ -93,9 +93,9 @@ c      pm         = 1.d0
         iseed      = 612345   ! seed for a random number generator
         dt         = 2.0d-2   ! time step for the integrator
 
-        isteps      = 200000  ! number of steps
-        incstp      = 100     ! how often do we calculate quantities
-        issstp      = 5000    ! how often do we take snapshot 
+        isteps     = 200000  ! number of steps
+        incstp     = 100     ! how often do we calculate quantities
+        issstp     = 5000    ! how often do we take snapshot 
 
 cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
         OPEN(3,STATUS='NEW', FILE='data.dat',

@@ -1,0 +1,17 @@
+#!/bin/bash
+#PBS -A SNICxxx-xx-xx
+#PBS -N solvent_with_salt
+#PBS -o test.out
+#PBS -e test.err
+#PBS -m ae
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=48:00:00
+###PBS -l pmem=2200mb
+###PBS -l pvmem=2900mb
+
+module add openmpi/intel
+
+cd $PBS_O_WORKDIR
+
+./solvent_with_salts
+

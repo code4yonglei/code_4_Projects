@@ -12,7 +12,7 @@ double second()
 
     getrusage(RUSAGE_SELF,&temp);
 
-    double foo1 = temp.ru_utime.tv_sec;     // seconds
-    double foo2 = temp.ru_utime.tv_usec;    // uSecs
+    double foo1 = temp.ru_utime.tv_sec;  // seconds
+    double foo2 = temp.ru_utime.tv_usec; // uSecs
     return  foo1 + (foo2/1000000.0); // milliseconds
 }

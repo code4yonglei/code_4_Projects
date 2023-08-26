@@ -27,7 +27,7 @@ extern "C" void cunfft_init(REAL box_length, int N0, int N1, int N2, REAL sigma,
     cunfft->sigma = sigma;
     cunfft->n = (int*)malloc(3 * sizeof(int));
     for(int t = 0; t < 3; t++)
-	cunfft->n[t] = cunfft->N[t] * sigma;
+		cunfft->n[t] = cunfft->N[t] * sigma;
     
     cunfft->precision = precision;
     cunfft->N_L = cunfft->N[0] * cunfft->N[1] * cunfft->N[2];
@@ -98,9 +98,10 @@ static __device__ inline REAL atomicAddReal(REAL* address, REAL value){
     REAL old = value;  
     REAL ret = atomicExch(address, 0.0f);
     REAL new_old = ret+old;
-    while ((old = atomicExch(address, new_old))!=0.0f){
-	new_old = atomicExch(address, 0.0f);
-	new_old += old;
+    while ((old = atomicExch(address, new_old))!=0.0f)
+	{
+		new_old = atomicExch(address, 0.0f);
+		new_old += old;
     }
     return ret;
 }
@@ -185,7 +186,8 @@ __global__ static void scale(REAL* f_hat, REAL* c_phi_inv0, REAL* c_phi_inv1, RE
     const int tid = threadIdx.x;
     const int bid = blockIdx.x;
 
-    int i, t0, t1, t2, k[3], ks[3], k_plain, ks_plain, N0=N[0],  N1 = N[1],  N2=N[2], n0=n[0], n1=n[1], n2=n[2];
+    int i, t0, t1, t2, k[3], ks[3], k_plain, ks_plain;
+	int N0=N[0],  N1 = N[1],  N2=N[2], n0=n[0], n1=n[1], n2=n[2];
     REAL c_phi_inv_k;
 
     i = bid * THREAD_NUM + tid;  
